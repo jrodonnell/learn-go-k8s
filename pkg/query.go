@@ -1,4 +1,4 @@
-package query
+package pkg
 
 import (
 	"context"
