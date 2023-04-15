@@ -1,9 +1,15 @@
 package main
 
 import (
-	"learn/pkg"
+	"flag"
+	"learn/pkg/query"
+	"os"
 )
 
 func main() {
-	pkg.Get("/home/jrodonnell/.kube/config.master", "cattle-system", "pod", "rancher-5f9b79d5fc-x89zh")
+	kubeconfig := flag.String("k", os.ExpandEnv("$HOME/.kube/config"), "kubeconfig file")
+	namespace := flag.String("ns", "default", "Namespace to Get from")
+	name := flag.String("n", "", "Pod to Get")
+	flag.Parse()
+	query.Get(kubeconfig, namespace, name)
 }
