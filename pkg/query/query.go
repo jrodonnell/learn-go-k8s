@@ -14,7 +14,7 @@ import (
 
 func Get(kubeconfig, namespace, name *string) {
 	ctx := context.Background()
-	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig) // read and parse kuebconfig file
+	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig) // read and parse kubeconfig file
 
 	if err != nil {
 		fmt.Println("1: ", err)
@@ -35,6 +35,7 @@ func Get(kubeconfig, namespace, name *string) {
 		os.Exit(1)
 	}
 
+	// TODO use objectmeta.Marshal instead to simplify this block
 	objectmeta := object.ObjectMeta               // get metav1.ObjectMeta, everything in the .metadata field from kubectl get
 	rt := reflect.TypeOf(objectmeta)              // get Type of objectmeta so we can make a map of the right size
 	output := make(map[string]any, rt.NumField()) // create map to store json of objectmeta so we can delete managedFields later
