@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+	"runtime"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -15,6 +16,10 @@ import (
 func Get(kubeconfig, namespace, name *string) {
 	ctx := context.Background()
 	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig) // read and parse kubeconfig file
+	config.ContentType = "application/vnd.kubernetes.protobuf"
+	config.UserAgent = fmt.Sprintf(
+		"book-example/v1.0-riley (%s/%s) kubernetes/v1.24.9",
+		runtime.GOOS, runtime.GOARCH)
 
 	if err != nil {
 		fmt.Println("1: ", err)
