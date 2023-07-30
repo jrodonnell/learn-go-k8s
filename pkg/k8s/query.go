@@ -1,4 +1,4 @@
-package query
+package k8s
 
 import (
 	"context"

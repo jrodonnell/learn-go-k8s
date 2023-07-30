@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"learn/pkg/query"
+	"learn/pkg/k8s"
 	"os"
 )
 
@@ -11,5 +11,5 @@ func main() {
 	namespace := flag.String("ns", "default", "Namespace to Get from")
 	name := flag.String("n", "", "Pod to Get")
 	flag.Parse()
-	query.Get(kubeconfig, namespace, name)
+	k8s.Get(kubeconfig, namespace, name)
 }
