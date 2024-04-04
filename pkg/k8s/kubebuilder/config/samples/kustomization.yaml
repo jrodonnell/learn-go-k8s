@@ -1,7 +1,0 @@
-## Append samples of your project ##
-resources:
-- g8s_v1alpha1_password.yaml
-- g8s_v1alpha1_pgpkey.yaml
-- g8s_v1alpha1_sshkey.yaml
-- g8s_v1alpha1_tlscert.yaml
-#+kubebuilder:scaffold:manifestskustomizesamples
